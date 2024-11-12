@@ -59,7 +59,6 @@ public class Estoque {
 
     @Override
     public String toString() {
-        String informacao = "Estoque: \n";
-        return informacao += String.format("ID - %d Nome - %s Quantidade - %d Unidade - %d", ID, nome, quantidade, unidade);
+        return "\n" + String.format("ID - %d Nome - %s Quantidade - %d Unidade - %d", ID, nome, quantidade, unidade);
     }
 }

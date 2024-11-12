@@ -3,6 +3,7 @@ package org.example.Classes;
 import org.example.Conexao.Conexao;
 import org.example.Conexao.ConexaoMySQL;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,13 +35,7 @@ public class EstoqueDAO {
             }
             return null;
         }
-        private void addValor(PreparedStatement preparedStatement, Estoque estoque) throws SQLException{
-            preparedStatement.setString(1, estoque.getNome());
-            preparedStatement.setInt(2, estoque.getQuantidade());
-            preparedStatement.setInt(3, estoque.getUnidade());
-        }
-
-        public List<Estoque> listaDeEstoque(){
+        public List<Estoque> listar(){
             String sql = "select * from estoque";
             List<Estoque> listadeEstoque = new ArrayList<>();
 
@@ -55,6 +50,26 @@ public class EstoqueDAO {
             }
             return listadeEstoque;
         }
+    public void updateColumnDescricao(String nomeColuna, Object novoValor, int id) throws SQLException {
+        String sql = String.format("UPDATE Estoque SET %s = ? WHERE (ID = ?)" , nomeColuna);
+        Connection conn = conexao.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setObject(1, novoValor);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+            stmt.close();
+            stmt.close();
+        }
+        catch (SQLException e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    private void addValor(PreparedStatement preparedStatement, Estoque estoque) throws SQLException{
+        preparedStatement.setString(1, estoque.getNome());
+        preparedStatement.setInt(2, estoque.getQuantidade());
+        preparedStatement.setInt(3, estoque.getUnidade());
+    }
 
         private  Estoque getEstoque(ResultSet result) throws SQLException {
             var estoque = new Estoque();

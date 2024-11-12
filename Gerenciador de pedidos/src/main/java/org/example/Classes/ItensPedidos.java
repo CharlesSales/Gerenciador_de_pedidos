@@ -19,6 +19,8 @@ public class ItensPedidos {
         this.preco = preco;
     }
 
+
+
     public static int getGeradorID() {
         return geradorID;
     }
@@ -34,7 +36,6 @@ public class ItensPedidos {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public int getPedidoID() {
         return pedidoID;

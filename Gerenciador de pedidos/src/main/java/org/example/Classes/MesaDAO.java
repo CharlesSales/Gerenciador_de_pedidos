@@ -3,6 +3,7 @@ package org.example.Classes;
 import org.example.Conexao.Conexao;
 import org.example.Conexao.ConexaoMySQL;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,11 +35,7 @@ public class MesaDAO {
         }
         return null;
     }
-    private void addValor(PreparedStatement preparedStatement, Mesa mesa) throws SQLException{
-        preparedStatement.setString(1, mesa.getStatus());
-
-    }
-    public List<Mesa> listaDeMesas(){
+    public List<Mesa> listar(){
         String sql = "select * from mesa";
         List<Mesa> listaDeMesas = new ArrayList<>();
 
@@ -53,7 +50,6 @@ public class MesaDAO {
         }
         return listaDeMesas;
     }
-
     public Mesa buscarPorId(int id){
         String sql = String.format("select * from mesa where id = %d",id);
         try {
@@ -67,6 +63,23 @@ public class MesaDAO {
         return null;
     }
 
+    public void updateColumnDescricao(String nomeColuna, Object novoValor, int id) throws SQLException {
+        String sql = String.format("UPDATE Mesa SET %s = ? WHERE (ID = ?)" , nomeColuna);
+        Connection conn = conexao.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setObject(1, novoValor);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    private void addValor(PreparedStatement preparedStatement, Mesa mesa) throws SQLException{
+        preparedStatement.setString(1, mesa.getStatus());
+
+    }
 
     private  static Mesa getMesas(ResultSet result) throws SQLException {
         var mesa = new Mesa();

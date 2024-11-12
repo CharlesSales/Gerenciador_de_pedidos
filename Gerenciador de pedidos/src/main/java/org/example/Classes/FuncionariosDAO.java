@@ -3,6 +3,7 @@ package org.example.Classes;
 import org.example.Conexao.Conexao;
 import org.example.Conexao.ConexaoMySQL;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,12 +32,7 @@ public class FuncionariosDAO {
         }
         return null;
     }
-    private void addValor(PreparedStatement preparedStatement, Funcionarios func) throws SQLException{
-        preparedStatement.setString(1, func.getNome());
-        preparedStatement.setString(2, func.getCargo());
-        preparedStatement.setDouble(3, func.getSalario());
-    }
-    public List<Funcionarios> listaDeFuncionarios(){
+    public List<Funcionarios> listar(){
         String sql = "select * from Funcionarios";
         List<Funcionarios> listaDeFuncionarios = new ArrayList<>();
 
@@ -50,6 +46,23 @@ public class FuncionariosDAO {
             System.out.println("Erro: " + e.getMessage());
         }
         return listaDeFuncionarios;
+    }
+    public void updateColumnDescricao(String nomeColuna, Object novoValor, int id) throws SQLException {
+        String sql = String.format("UPDATE Funcionarios SET %s = ? WHERE (ID = ?)" , nomeColuna);
+        Connection conn = conexao.getConnection();
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setObject(1, novoValor);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+    private void addValor(PreparedStatement preparedStatement, Funcionarios func) throws SQLException{
+        preparedStatement.setString(1, func.getNome());
+        preparedStatement.setString(2, func.getCargo());
+        preparedStatement.setDouble(3, func.getSalario());
     }
 
     private  Funcionarios getFuncionario(ResultSet result) throws SQLException {
