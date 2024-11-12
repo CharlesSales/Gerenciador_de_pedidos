@@ -1,0 +1,11 @@
+     public void deletarColuna(int id) throws SQLException {
+             String sql = String.format("DELETE FROM <Nome_da_tabela> WHERE (<nome_coluna_ID> = id);");
+             Connection conn = conexao.obterConexao();
+             try (PreparedStatement stmt = conn.prepareStatement(sql)){
+                 stmt.setInt(1, id);
+                 stmt.executeUpdate();
+             } catch (SQLException e) {
+                 System.out.println("Erro " + e.getMessage());
+         }
+     }
+
