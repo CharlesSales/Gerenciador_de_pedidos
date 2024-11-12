@@ -18,7 +18,7 @@ public class FuncionariosDAO {
     public void criarFuncionario(){
 
     }
-    public String salvarEstoque(Funcionarios func){
+    public String salvarFuncionario(Funcionarios func){
         String sql = "insert into Funcionarios(nome, cargo, salario) values (? ,? ,?)";
         try {
             PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(sql);

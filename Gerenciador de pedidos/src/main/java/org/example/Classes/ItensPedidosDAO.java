@@ -17,7 +17,7 @@ public class ItensPedidosDAO {
     }
 
     public String salvarIP(ItensPedidos itensP){
-        String sql = "insert into IntensPedido(pedidoID, descricao, quantidade, preco) values (?, ?, ?, ? )";
+        String sql = "insert into ItensPedidos(pedidoID, descrição, quantidade, preço) values (?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(sql);
             addValor(preparedStatement, itensP);
@@ -30,11 +30,10 @@ public class ItensPedidosDAO {
         return null;
     }
     private void addValor(PreparedStatement preparedStatement, ItensPedidos itensP) throws SQLException{
-        preparedStatement.setString(1, itensP.getDescricao());
-        preparedStatement.setInt(1, itensP.getQuantidade());
-        preparedStatement.setDouble(1, itensP.getPreco());
-//        preparedStatement.setInt(1, itensP.ge());
-
+        preparedStatement.setInt(1, itensP.getPedidoID());
+        preparedStatement.setString(2, itensP.getDescricao());
+        preparedStatement.setInt(3, itensP.getQuantidade());
+        preparedStatement.setDouble(4, itensP.getPreco());
     }
     public List<ItensPedidos> listaDositens(){
         String sql = "select * from ItensPedidos";
@@ -54,10 +53,10 @@ public class ItensPedidosDAO {
     private  ItensPedidos getIP(ResultSet result) throws SQLException {
         var iP = new ItensPedidos();
         iP.setId(result.getInt("ID"));
-        iP.setDescricao(result.getString("ID"));
-        iP.setPreco(result.getInt("ID"));
-        iP.setQuantidade(result.getInt("ID"));
-//        iP.setPedidoID(result.("PedidoID"));
+        iP.setDescricao(result.getString("Descrição"));
+        iP.setPreco(result.getInt("Preço"));
+        iP.setQuantidade(result.getInt("Quantidade"));
+        iP.setPedidoID(result.getInt("PedidoID"));
         return iP;
     }
 }

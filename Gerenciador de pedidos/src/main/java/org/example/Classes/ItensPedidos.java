@@ -3,7 +3,7 @@ package org.example.Classes;
 public class ItensPedidos {
     private static int geradorID = 1;
     private int id;
-    private Pedidos pedidoID;
+    private int pedidoID;
     private String descricao;
     private int quantidade;
     private double preco;
@@ -11,8 +11,9 @@ public class ItensPedidos {
     public ItensPedidos() {
     }
 
-    public ItensPedidos(String descricao, int quantidade, double preco) {
-        this.id = id;;
+    public ItensPedidos(int pedidoID, String descricao, int quantidade, double preco) {
+        this.id = geradorID++;
+        this.pedidoID = pedidoID;
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.preco = preco;
@@ -34,11 +35,12 @@ public class ItensPedidos {
         this.id = id;
     }
 
-    public Pedidos getPedidoID() {
+
+    public int getPedidoID() {
         return pedidoID;
     }
 
-    public void setPedidoID(Pedidos pedidoID) {
+    public void setPedidoID(int pedidoID) {
         this.pedidoID = pedidoID;
     }
 
@@ -69,8 +71,7 @@ public class ItensPedidos {
     @Override
     public String toString() {
         {
-            String informacao = "Itens Pedidos: \n";
-            return informacao += String.format("Id: %d PedidoID: %d Descricao: %s quantidade: %d preco:%.2f", id, pedidoID, descricao, quantidade, preco);
+            return String.format("\nId: %d PedidoID: %d Descricao: %s quantidade: %d preco:%.2f", id, pedidoID, descricao, quantidade, preco);
         }
     }
 }

@@ -9,7 +9,7 @@ public class ConexaoMySQL implements Conexao{
     private final String User = "root";
     private final String Senha = "";
     private final String URL = "jdbc:mysql://localhost:3306/gerenciadordetarefas";
-    private Connection conn;
+    private static Connection conn;
 
     @Override
     public Connection getConnection() throws SQLException {

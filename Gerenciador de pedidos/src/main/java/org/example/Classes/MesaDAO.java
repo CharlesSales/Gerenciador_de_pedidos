@@ -18,7 +18,7 @@ public class MesaDAO {
         this.conexao = new ConexaoMySQL();
     }
 
-    public void criarFuncionario(){
+    public void criarMesa(){
 
     }
     public String salvarMesa(Mesa mesa){
@@ -53,7 +53,22 @@ public class MesaDAO {
         }
         return listaDeMesas;
     }
-    private  Mesa getMesas(ResultSet result) throws SQLException {
+
+    public Mesa buscarPorId(int id){
+        String sql = String.format("select * from mesa where id = %d",id);
+        try {
+            ResultSet result = conexao.getConnection().prepareStatement(sql).executeQuery();
+            while(result.next()){
+                return getMesas(result);
+            }
+        } catch (SQLException e) {
+            System.out.println(String.format("Error: %s", e.getMessage()));
+        }
+        return null;
+    }
+
+
+    private  static Mesa getMesas(ResultSet result) throws SQLException {
         var mesa = new Mesa();
         mesa.setId(result.getInt("ID"));
         mesa.setStatus(result.getString("Status"));

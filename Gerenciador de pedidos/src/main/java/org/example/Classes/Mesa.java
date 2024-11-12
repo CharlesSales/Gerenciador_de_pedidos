@@ -32,7 +32,6 @@ public class Mesa {
 
     @Override
     public String toString() {
-        String informacao = "Mesas: \n";
-        return informacao += String.format("Id: %d Status: %s", id, status);
+        return String.format("\nId: %d Status: %s", id, status);
     }
 }
