@@ -24,7 +24,7 @@ public class PedidosDAO {
     }
 
     private String salvarPedido(Pedidos pedidos){
-        String sql = "insert into pedido(mesaID, funcionarioID, dataPedido, Status, estoqueID) values (?, ?, ?, ?, ?)";
+        String sql = "insert into pedido(mesaID, funcionarioID, dataPedido, Status_pedido, estoqueID) values (?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = conexao.getConnection().prepareStatement(sql);
             addValor(preparedStatement, pedidos);
@@ -82,14 +82,12 @@ public class PedidosDAO {
 
     private  Pedidos getPedidos(ResultSet result) throws SQLException {
         var pedidos = new Pedidos();
-
         pedidos.setId(result.getInt("ID"));
         pedidos.setMesaId(result.getInt("mesaID"));
         pedidos.setFuncionarioID(result.getInt("funcionarioID"));
         pedidos.setData(result.getString("DataPedido"));
-        pedidos.setStatus(result.getString("Status"));
-        pedidos.setStatus(result.getString("estoqueID"));
-
+        pedidos.setStatus(result.getString("Status_pedido"));
+        pedidos.setEstoqueID(result.getInt("estoqueID"));
         return pedidos;
     }
 }

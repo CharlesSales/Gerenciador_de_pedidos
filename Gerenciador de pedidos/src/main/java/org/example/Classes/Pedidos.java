@@ -72,6 +72,6 @@ public class Pedidos {
 
     @Override
     public String toString() {
-            return String.format("\nid: %d, mesa: %d, funcionario: %d, data: %s, Status: %s, estoque: %d", getId(), mesaId, funcionarioID,data, status, estoqueID);
+            return String.format("\nid: %d, mesa: %d, funcionario: %d, data: %s, status %s, estoque: %d", getId(), mesaId, funcionarioID,data, status, estoqueID);
     }
 }

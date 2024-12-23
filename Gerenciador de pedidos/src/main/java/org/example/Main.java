@@ -6,11 +6,10 @@ import org.example.Classes.Pedidos;
 import org.example.Conexao.Conexao;
 import org.example.Conexao.ConexaoMySQL;
 import org.example.DAO.*;
-
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Main {
+    
     public static void main(String[] args) throws SQLException {
         Conexao conn = new ConexaoMySQL();
         EstoqueDAO estoque = new EstoqueDAO();
@@ -21,7 +20,5 @@ public class Main {
 
         System.out.println(pedido.listar());
 
-
- }
-
+    }
 }
