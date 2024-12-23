@@ -7,20 +7,19 @@ public class Pedidos {
     private int funcionarioID;
     private String data;
     private String status;
+    private int estoqueID;
 
     public Pedidos() {
     }
 
-
-
-
-    public Pedidos(int mesaId, int funcionarioID, String data, String status) {
+    public Pedidos(int mesaId, int funcionarioID, String data, String status, int estoqueID) {
 
         this.id = geradorID++;
         this.mesaId = mesaId;
         this.funcionarioID = funcionarioID;
         this.data = data;
         this.status = status;
+        this.estoqueID = estoqueID;
     }
 
     public int getId() {
@@ -38,15 +37,6 @@ public class Pedidos {
     public void setMesaId(int mesaId) {
         this.mesaId = mesaId;
     }
-
-//    public Mesa getMesa() {
-//        return mesa;
-//    }
-//
-//    public void setMesa(Mesa mesa) {
-//        this.mesa = mesa;
-//        this.mesaId = mesa.getId();
-//    }
 
     public int getFuncionarioID() {
         return funcionarioID;
@@ -72,10 +62,16 @@ public class Pedidos {
         this.status = status;
     }
 
+    public int getEstoqueID() {
+        return estoqueID;
+    }
+
+    public void setEstoqueID(int estoqueID) {
+        this.estoqueID = estoqueID;
+    }
+
     @Override
     public String toString() {
-        {
-            return String.format("\nId: %d MesaID: %d FuncionarioID: %d Data: %s Status do pedido: %s", getId(), mesaId, funcionarioID,data, status);
-        }
+            return String.format("\nid: %d, mesa: %d, funcionario: %d, data: %s, Status: %s, estoque: %d", getId(), mesaId, funcionarioID,data, status, estoqueID);
     }
 }

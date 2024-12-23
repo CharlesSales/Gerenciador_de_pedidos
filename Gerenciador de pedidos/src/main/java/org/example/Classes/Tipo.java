@@ -1,5 +1,5 @@
-package org.example.Classes;
-
-public enum Tipo {
-    LIVRE, OCUPADO, PREPARANDO, CONCLUIDO;
-}
+//package org.example.Classes;
+//
+//public enum Tipo {
+//    LIVRE, OCUPADO, PREPARANDO, CONCLUIDO;
+//}
